@@ -1,0 +1,565 @@
+deleteall;
+um=1e-6;
+nm=1e-9;
+#H1=0;
+#H2=0;
+#H3=0;
+#L1=0;
+#L2=0;
+#L3=0;
+
+
+    
+if(acos((1.4599*1.4599-2.2153*2.2153+1.4599*1.4599)/(-2.2153*2.2153))>0){
+    L1=532*nm/(4*pi*1.4599)*(2*pi-acos((1.4599*1.4599-2.2153*2.2153+1.4599*1.4599)/(-2.2153*2.2153)));}
+else{
+    L1=532*nm/(4*pi*1.4599)*(2*pi+acos((1.4599*1.4599-2.2153*2.2153+1.4599*1.4599)/(-2.2153*2.2153)));
+    }
+            
+if(atan((sin(4*pi*1.4599*L1/(532*nm))*4*2.2153*1.4599)/(-cos(4*pi*1.4599*L1/(532*nm))*2*(1.4599*1.4599+2.2153*2.2153)-2*(1.4599*1.4599-2.2153*2.2153)))>0){
+    H1= 532*nm/(4*pi*n1)*atan((sin(4*pi*1.4599*L1/(532*nm))*4*2.2153*1.4599)/(-cos(4*pi*1.4599*L1/(532*nm))*2*(1.4599*1.4599+2.2153*2.2153)-2*(1.4599*1.4599-2.2153*2.2153)));}
+else{
+    H1=532*nm/(4*pi*n1)*(pi+atan((sin(4*pi*1.4599*L1/(532*nm))*4*2.2153*1.4599)/(-cos(4*pi*1.4599*L1/(532*nm))*2*(1.4599*1.4599+2.2153*2.2153)-2*(1.4599*1.4599-2.2153*2.2153))));
+}
+
+
+if(acos((1.4599*1.4599-n1*n1-1.4599*1.4599*cos(4*pi*n1*H1/(532*nm)))/(-n1*n1))>0){
+    L2=532*nm/(4*pi*1.4599)*(2*pi-acos((1.4599*1.4599-n1*n1-1.4599*1.4599*cos(4*pi*n1*H1/(532*nm)))/(-n1*n1)));}
+else{
+    L2=532*nm/(4*pi*1.4599)*(2*pi+acos((1.4599*1.4599-n1*n1-1.4599*1.4599*cos(4*pi*n1*H1/(532*nm)))/(-n1*n1)));}
+    
+if(atan((sin(4*pi*1.4599*L2/(532*nm))*4*n1*1.4599)/(-cos(4*pi*1.4599*L2/(532*nm))*2*(1.4599*1.4599+n1*n1)-2*(1.4599*1.4599-n1*n1)))>0){
+    H2=532*nm/(4*pi*n2)*atan((sin(4*pi*1.4599*L2/(532*nm))*4*n1*1.4599)/(-cos(4*pi*1.4599*L2/(532*nm))*2*(1.4599*1.4599+n1*n1)-2*(1.4599*1.4599-n1*n1)));}
+else{
+    H2=532*nm/(4*pi*n2)*(pi+atan((sin(4*pi*1.4599*L2/(532*nm))*4*n1*1.4599)/(-cos(4*pi*1.4599*L2/(532*nm))*2*(1.4599*1.4599+n1*n1)-2*(1.4599*1.4599-n1*n1))));}
+    
+if(acos((1.4599*1.4599-n2*n2-1.4599*1.4599*cos(4*pi*n2*H2/(532*nm)))/(-n2*n2))>0){
+    L3=532*nm/(4*pi*1.4599)*(2*pi-acos((1.4599*1.4599-n2*n2-1.4599*1.4599*cos(4*pi*n2*H2/(532*nm)))/(-n2*n2)));}
+else{
+    L3=532*nm/(4*pi*1.4599)*(2*pi+acos((1.4599*1.4599-n2*n2-1.4599*1.4599*cos(4*pi*n2*H2/(532*nm)))/(-n2*n2)));}
+    
+addsphere;
+set("name","sphere-25");
+set("index",n3);
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.41985*um+H1+L1+L2+H2+L3+H3);
+
+addrect;
+set("name","25");                 
+set("index",n3);
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.41985*um+L1+H1+L2+H2+L3+H3));
+set("z min",(1.41985*um+L1+H1+L2+H2+L3)); 
+
+addsphere;
+set("name","sphere-24");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.41985*um+L1+H1+L2+H2+L3);
+
+addrect;
+set("name","24");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.41985*um+L1+H1+L2+H2+L3));
+set("z min",(1.41985*um+L1+H1+L2+H2)); 
+
+addsphere;
+set("name","sphere-23");
+set("index",n2);
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.41985*um+L1+H1+L2+H2);
+
+addrect;
+set("name","23");                 
+set("index",n2);
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.41985*um+L1+H1+L2+H2));
+set("z min",(1.41985*um+L1+H1+L2)); 
+
+addsphere;
+set("name","sphere-22");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.41985*um+L1+H1+L2);
+
+addrect;
+set("name","22");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.41985*um+L1+H1+L2));
+set("z min",(1.41985*um+L1+H1));
+
+addsphere;
+set("name","sphere-21");
+set("index",n1);
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.41985*um+L1+H1);
+
+addrect;
+set("name","21");                 
+set("index",n1);
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.41985*um+L1+H1));
+set("z min",(1.41985*um+L1)); 
+
+addsphere;
+set("name","sphere-20");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.41985*um+L1);
+
+addrect;
+set("name","20");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.41985*um+L1));
+set("z min",1.41985*um);
+
+addsphere;
+set("name","sphere-19");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.41985*um);
+
+addrect;
+set("name","19");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.41985*um));
+set("z min",(1.35981*um));
+
+addsphere;
+set("name","sphere-18");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.35981*um);
+
+addrect;
+set("name","18");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.35981*um));
+set("z min",(1.26876*um));
+
+addsphere;
+set("name","sphere-17");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.26876*um);
+
+addrect;
+set("name","17");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.26876*um));
+set("z min",(1.20872*um));
+
+addsphere;
+set("name","sphere-16");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.20872*um);
+
+addrect;
+set("name","16");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.20872*um));
+set("z min",(1.11767*um));
+
+addsphere;
+set("name","sphere-15");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.11767*um);
+
+addrect;
+set("name","15");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.11767*um));
+set("z min",(1.05763*um));
+
+addsphere;
+set("name","sphere-14");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+1.05763*um);
+
+addrect;
+set("name","14");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(1.05763*um));
+set("z min",(0.96658*um));
+
+addsphere;
+set("name","sphere-13");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.96658*um);
+
+addrect;
+set("name","13");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.96658*um));
+set("z min",(0.90654*um));
+
+addsphere;
+set("name","sphere-12");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.90654*um);
+
+addrect;
+set("name","12");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.90654*um));
+set("z min",(0.81549*um));
+
+addsphere;
+set("name","sphere-11");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.81549*um);
+
+addrect;
+set("name","11");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.81549*um));
+set("z min",(0.75545*um));
+
+addsphere;
+set("name","sphere-10");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.75545*um);
+
+addrect;
+set("name","10");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.75545*um));
+set("z min",(0.6644*um));
+
+addsphere;
+set("name","sphere-9");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.6644*um);
+
+addrect;
+set("name","9");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.6644*um));
+set("z min",(0.60436*um));
+
+addsphere;
+set("name","sphere-8");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.60436*um);
+
+addrect;
+set("name","8");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.60436*um));
+set("z min",(0.51331*um));
+
+addsphere;
+set("name","sphere-7");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.51331*um);
+
+addrect;
+set("name","7");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.51331*um));
+set("z min",(0.45327*um));
+
+addsphere;
+set("name","sphere-6");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.45327*um);
+
+addrect;
+set("name","6");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.45327*um));
+set("z min",(0.36222*um));
+
+addsphere;
+set("name","sphere-5");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.36222*um);
+
+addrect;
+set("name","5");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.36222*um));
+set("z min",(0.30218*um));
+
+addsphere;
+set("name","sphere-4");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.30218*um);
+
+addrect;
+set("name","4");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.30218*um));
+set("z min",(0.21113*um));
+
+addsphere;
+set("name","sphere-3");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.21113*um);
+
+addrect;
+set("name","3");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.21113*um));
+set("z min",(0.15109*um));
+
+addsphere;
+set("name","sphere-2");
+set("material","SIO2");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.15109*um);
+
+addrect;
+set("name","2");                 
+set("material","SIO2");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.15109*um));
+set("z min",(0.06004*um));
+
+addsphere;
+set("name","sphere-1");
+set("material","Ta2o5-807");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um+0.06004*um);
+
+addrect;
+set("name","1");                 
+set("material","Ta2o5-807");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",(0.06004*um));
+set("z min",0);
+
+addsphere;
+set("name","sphere");
+set("material","SIO2");
+#set("mesh order","1");
+set("x",0);
+set("y",0);
+set("z",r*um);
+set("radius",r*um);
+
+addrect;
+set("name","sub");                 
+set("material","SUB");
+set("x",0);   
+set("y",0);
+set("x span",10*um);
+set("y span",10*um);
+set("z max",0);
+set("z min",-1100*um);
+
+addplane;
+set("injection axis","z");
+set("direction","backward");
+set("x",0);
+set("x span",3.2*um);
+set("y",0);
+set("y span",3.2*um);
+set("z",3.4*um);
+set("center wavelength",0.532*um);
+set("wavelength span",0*um);
+set("amplitude",1);
+set("phase",0);
+set("angle theta",0);
+set("angle phi",0);
+set("polarization angle",0);
+
+addfdtd;
+set("dimension",2);
+set("x",0);
+set("y",0);
+set("z min",-0.2*um);
+set("z max",3.9*um);
+set("x span",4*um);
+set("y span",4*um);
+set("x min bc","PML");
+set("x max bc","PML");
+set("y min bc","PML");
+set("y max bc","PML");
+set("z min bc","PML");
+set("z max bc","PML");
+set("Mesh type","auto non-uniform");
+set("Mesh accuracy",2);
+
+
+
+addprofile;
+set("name","E");
+set("monitor type","2D Y-normal");
+set("x",0);
+set("x span",4*um);      
+#set("y",0);
+#set("y span",0);   
+set("z min",0);
+set("z max",2*r*um+1.41985*um+H1+L1+L2+H2+L3+H3);
+
+#addmesh;
+#set("name","mesh");                 
+#set("x",0);   
+#set("y",0);
+#set("x span",0.4*um);
+#set("y span",0.4*um);
+#set("z max",2*r*um+1.41885*um+H1+L1+L2+H2+L3+H3);
+#set("z min",0);
+#set("dx",0.005*(2*r*um+1.41985*um+H1+L1+L2+H2+L3+H3));
+#set("dy",0.005*(2*r*um+1.41985*um+H1+L1+L2+H2+L3+H3));
+#set("dz",0.005*(2*r*um+1.41985*um+H1+L1+L2+H2+L3+H3));
